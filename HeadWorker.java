@@ -20,6 +20,11 @@ public class HeadWorker extends Worker{
         System.out.println("Зарплата повышена успешно!!!");
     }
 
+    public void takeTask(Task task,Worker worker) {
+        System.out.println(this.getSurname() + " issued a task to " + worker.getSurname());
+        worker.takeTask(task);
+    }
+
     @Override
     public String toString() {
         return "HeadWorker{" +

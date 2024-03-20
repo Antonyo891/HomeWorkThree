@@ -2,9 +2,12 @@ package seminar03;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
+import java.util.HashMap;
+import java.util.Map;
 
 //Создать класс ”Сотрудник” с полями: ФИО, должность, телефон, зарплата, возраст;
 public class Worker implements Comparable<Worker> {
+    protected static Map<Task,Worker> tasks;
     private String surname;
     private String name;
     private String middleName;
@@ -103,6 +106,19 @@ public class Worker implements Comparable<Worker> {
                 '}';
     }
 
+    public void takeTask(Task task){
+        if (tasks==null) tasks=new HashMap<>();
+        tasks.put(task,this);
+        System.out.println(this.getSurname() + " take a task " + task.getContent_of_the_task());
+    }
+
+    public static Map<Task, Worker> getTasks() {
+        if (tasks==null) {
+            System.out.println("Tasks is empty");
+            return null;
+        }
+        return tasks;
+    }
 
     @Override
     public int compareTo(Worker o) {

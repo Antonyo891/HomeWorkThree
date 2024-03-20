@@ -22,33 +22,35 @@ public class Main {
                         "+7-999-111-22-66", 500,
                         LocalDate.of(1970, 11, 17))
         };
-
-        //System.out.println("Average age: " + getAverageAge(workers));
-        //System.out.println("Average salary: " + getAverageSalary(workers));
-
-        //Worker.addSalary(workers, 45, 50);
-        //System.out.println(Arrays.toString(workers));
-
+        Task task = new Task("Prepare a report");
+        ArrayList<Task> tasks= new ArrayList<>();
         List<Worker> workerList = Arrays.asList(workers);
+        HeadWorker headWorker = null;
+        tasks.add(task);
+        tasks.add(new Task("Impose order"));
+        tasks.add(new Task("Fixing the lights"));
 
         System.out.println("---");
-        //System.out.println("Collections.sort(workerList)");
-        //Collections.sort(workerList);
         System.out.println(workerList);
         System.out.println("---");
         HeadWorker.addSalary(workers,18,50);
-        //System.out.println("new WorkerSalaryComparator()");
-        //workerList.sort(new WorkerSalaryComparator());
-        //System.out.println(workerList);
 
         System.out.println("new WorkerNameComparator()");
         workerList.sort(new WorkerNameComparator());
         System.out.println(workerList);
 
         System.out.println("---");
-
-        //workerList.sort((o1, o2) -> o1.getAge() - o2.getAge());
-        //System.out.println(workerList);
+        System.out.println(Worker.getTasks());
+        System.out.println("----");
+        workerList.get(2).takeTask(task);
+        System.out.println(Worker.getTasks());
+        for (Worker temp: workerList) {
+            if (temp.getClass()== HeadWorker.class) headWorker=(HeadWorker) temp;
+        }
+        headWorker.takeTask(tasks.get(1));
+        System.out.println(Worker.getTasks());
+        headWorker.takeTask(tasks.get(2),workerList.get(3));
+        System.out.println(Worker.getTasks());
     }
 
     public static double getAverageAge(Worker[] array) {
