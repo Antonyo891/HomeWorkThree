@@ -43,14 +43,16 @@ public class Main {
         System.out.println(Worker.getTasks());
         System.out.println("----");
         workerList.get(2).takeTask(task);
-        System.out.println(Worker.getTasks());
         for (Worker temp: workerList) {
             if (temp.getClass()== HeadWorker.class) headWorker=(HeadWorker) temp;
         }
         headWorker.takeTask(tasks.get(1));
-        System.out.println(Worker.getTasks());
         headWorker.takeTask(tasks.get(2),workerList.get(3));
-        System.out.println(Worker.getTasks());
+        for (Map.Entry<Task,Worker> item: Worker.getTasks().entrySet()
+             ) {
+            System.out.println("Task " + item.getKey().getContent_of_the_task() +
+                    " is perfomed by " + item.getValue().getSurname());
+        }
     }
 
     public static double getAverageAge(Worker[] array) {
